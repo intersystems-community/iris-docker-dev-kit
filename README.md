@@ -1,70 +1,55 @@
-## intersystems-objectscript-template
-This is a template for InterSystems ObjectScript Github repository.
-The template goes also with a few files which let you immedietly compile your ObjecScript files in InterSystems IRIS Community Edition in a docker container
+# iris-docker-dev-kit
 
-## Prerequisites
-This needs to have git and docker installed.
+**ATTENTION: THIS IS NOT AN APPLCATION!**
 
-## Installation 
+This is better )
+This is a set of files which gives you the option to develop your InterSystems ObjectScript solution in IRIS Community Edition or IRIS Community Edition for Health on your laptop using VSCode ObjectScript extention.
 
-Clone/git pull the repo into any local directory
+## When This Works
 
-```
-$ git clone https://github.com/your-repository.git
-```
+You have a repository, which contains ObjectScript sources in CLS or XML. [Example]
+And you want to run, edit, compile, debug code and probably commit, push ObjectScript to your repository back.
 
-Open the terminal in this directory and run:
+This repository is for you in this case!
 
-```
-$ docker-compose build
-```
+## Installation
 
-3. Run the IRIS container with your project:
+Download the latest release zip and unpack files in your repository folder.
+Check the line 16 in Dockerfile, which looks like this:
 
 ```
-$ docker-compose up -d
+16 COPY src src
 ```
 
-## How to Test it
+This line copies source files from /src folder in your repository to /src subfolder in Docker container's to import it then into IRIS. Change the first src to the name of the folder with ObjectScript you want to be imported to IRIS. If you have several files or folders repeat this COPY command for each resource accordingly.
+That's it.
 
-Open IRIS terminal:
+## Usage
+## How to Run the Application
+
+Open InterSystems IRIS terminal:
 
 ```
 $ docker-compose exec iris iris session iris
 USER>zn "IRISAPP"
-IRISAPP>write ##class(PackageSample.ObjectScript).Test()
+IRISAPP>do ##class(Contest.ObjectScript).TheUniverseQuestion()
+42
 ```
 ## How to start coding
 This repository is ready to code in VSCode with ObjectScript plugin.
-Install [VSCode](https://code.visualstudio.com/) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
-Open /src/cls/PackageSample/ObjectScript.cls class and try to make changes - it will be compiled in running IRIS docker container.
+Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugins and open the folder in VSCode.
 
-Feel free to delete PackageSample folder and place your ObjectScript classes in a form
-/src/cls/Package/Classname.cls
+Right-click on **docker-compose.yml** file and click Compose Restart
 
-The script in Installer.cls will import everything you place under /src/cls into IRIS.
+Once docker will finish starting procedure and show:
 
-## What's insde the repo
+```
+Creating objectscript-contest-template_iris_1 ... done
+```
 
-# Dockerfile
+Click on the ObjectScript status bar and select Refresh connection in the menu.
+Wait for VSCode to make connection and show something like "localhost:32778[IRISAPP] - Connected"
 
-The simplest dockerfile which starts IRIS and imports Installer.cls and then runs the Installer.setup method, which creates IRISAPP Namespace and imports ObjectScript code from /src folder into it.
-Use the related docker-compose.yml to easily setup additional parametes like port number and where you map keys and host folders.
-Use .env/ file to adjust the dockerfile being used in docker-compose.
+You can start coding after that. Open **ObjectScript.cls** in VSCode, make changes and save - the class will be compiled by IRIS on 'Save'.
 
-# Dockerfile-zpm
-
-Dockerfile-zpm builds for you a container which contains ZPM package manager client so you are able to install packages from ZPM in this container.
-As an example of usage in installs webterminal
-
-# Dockerfile-web
-
-Dockerfile-web starts IRIS does the same what Dockerfile does and also sets up the web app programmatically
-
-
-# .vscode/settings.json
-
-Settings file to let you immedietly code in VSCode with [VSCode ObjectScript plugin](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript))
-
-# .vscode/launch.json
-Config file if you want to debug with VSCode ObjectScript
+## Happy coding!
