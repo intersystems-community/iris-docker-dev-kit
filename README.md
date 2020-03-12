@@ -7,24 +7,23 @@ This is a set of files which gives you the option to develop your InterSystems O
 
 ## When This Works
 
-You have a repository, which contains ObjectScript sources in CLS or XML. [Example]
+You have a repository, which contains ObjectScript sources in CLS or XML. [Example](https://github.com/intersystems-ru/Cache-translate)
 And you want to run, edit, compile, debug code and probably commit, push ObjectScript to your repository back.
 
 This repository is for you in this case!
 
 ## Installation
 
-Download the latest release zip and unpack files in your repository folder.
+Download the [latest release zip](https://github.com/evshvarov/iris-docker-dev-kit/releases/tag/0.1) and unpack files in your repository folder.
 Check the line 16 in Dockerfile, which looks like this:
 
 ```
-16 COPY src src
+COPY src src
 ```
 
 This line copies source files from /src folder in your repository to /src subfolder in Docker container's to import it then into IRIS. Change the first src to the name of the folder with ObjectScript you want to be imported to IRIS. If you have several files or folders repeat this COPY command for each resource accordingly.
 That's it.
 
-## Usage
 ## How to Run the Application
 
 Open InterSystems IRIS terminal:
