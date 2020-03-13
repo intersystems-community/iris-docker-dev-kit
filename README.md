@@ -2,8 +2,7 @@
 
 **ATTENTION: THIS IS NOT AN APPLCATION!**
 
-This is better )
-This is a set of files which gives you the option to develop your InterSystems ObjectScript solution in IRIS Community Edition or IRIS Community Edition for Health on your laptop using VSCode ObjectScript extention.
+This is a set of files which gives you the option to develop your InterSystems ObjectScript solution in IRIS Community Edition or IRIS Community Edition for Health on your laptop using VSCode ObjectScript extension.
 
 ## When This Works
 
